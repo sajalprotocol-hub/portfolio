@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Redirecting...</title>
+  <script>
+    // Single Page Apps for GitHub Pages
+    // MIT License
+    // https://github.com/rafgraph/spa-github-pages
+    (function() {
+      // This works for all URLs that contain a 'path', but not for URLs that contain only a '#'
+      var l = window.location;
+      var segments = l.pathname.split('/');
+      // Remove empty segments and keep only the last part of the path
+      var repoName = segments[1] || "";
+      
+      // Save the current URL parameters to sessionStorage
+      var origin = l.origin || (l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : ''));
+      var basePath = origin + (repoName ? '/' + repoName : '');
+      var restOfUrl = l.pathname.substr(basePath.length);
+      
+      // If the path is empty, we assume we're at the root
+      if (!restOfUrl || restOfUrl === '/') {
+        l.replace(basePath + '/index.html' + l.search + l.hash);
+        return;
+      }
+      
+      // Otherwise, redirect to the index page with the path saved in sessionStorage
+      sessionStorage.setItem('redirect', restOfUrl + l.search + l.hash);
+      l.replace(basePath + '/index.html');
+    })();
+  </script>
+</head>
+<body>
+  <h1>Redirecting...</h1>
+  <p>If you are not redirected automatically, <a href="./index.html">click here</a>.</p>
+</body>
+</html>
